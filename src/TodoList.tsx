@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from './components/Button';
 
 export type TasksType = {
 	id: number;
@@ -9,6 +10,8 @@ export type TasksType = {
 type PropsType = {
 	titleValue: string;
 	tasks: Array<TasksType>;
+	removeTask: Function;
+	filterTasks: Function;
 };
 
 export function TodoList(props: PropsType) {
@@ -20,19 +23,37 @@ export function TodoList(props: PropsType) {
 				<button>+</button>
 			</div>
 			<ul>
-				{props.tasks.map((task) => {
+				{props.tasks.map((task, index) => {
 					return (
-						<li>
+						<li key={index}>
 							<input type='checkbox' checked={task.isDone} />{' '}
 							<span>{task.name}</span>
+							{/*<button onClick={() => props.removeTask(task.id)}>X</button>*/}
+							{/*Кнопка которая удаляет таск*/}
+							<Button
+								name={'X'}
+								click={props.removeTask}
+								clickParameter={task.id}
+							/>
 						</li>
 					);
 				})}
 			</ul>
 			<div>
-				<button>All</button>
+				<Button name={'All'} click={props.filterTasks} clickParameter={'all'} />
+				<Button
+					name={'Active'}
+					click={props.filterTasks}
+					clickParameter={'active'}
+				/>
+				<Button
+					name={'Completed'}
+					click={props.filterTasks}
+					clickParameter={'completed'}
+				/>
+				{/*<button>All</button>
 				<button>Active</button>
-				<button>Completed</button>
+				<button>Completed</button>*/}
 			</div>
 		</div>
 	);
