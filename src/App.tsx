@@ -5,7 +5,7 @@ import { TasksType, TodoList } from './TodoList';
 export type FilterValuesType = 'all' | 'completed' | 'active';
 
 function App() {
-	let [tasks, setTasks] = useState<Array<TasksType>>([
+	let [initTasks, setTasks] = useState<Array<TasksType>>([
 		{ id: 1, name: 'CSS', isDone: true },
 		{ id: 2, name: 'JS', isDone: true },
 		{ id: 3, name: 'React', isDone: false },
@@ -15,18 +15,16 @@ function App() {
 	let [filter, setFilter] = useState<FilterValuesType>('all');
 
 	const removeTask = (id: number) => {
-		let resultRemoveTasks = tasks.filter(
-			(filteredTask) => filteredTask.id !== id
-		);
+		let resultRemoveTasks = tasks.filter((task) => task.id !== id);
 		setTasks(resultRemoveTasks);
 	};
 
-	let filteredTasks = tasks;
+	let tasks = initTasks;
 	if (filter === 'completed') {
-		filteredTasks = tasks.filter((task) => task.isDone === true);
+		tasks = tasks.filter((task) => task.isDone === true);
 	}
 	if (filter === 'active') {
-		filteredTasks = tasks.filter((task) => task.isDone === false);
+		tasks = tasks.filter((task) => task.isDone === false);
 	}
 
 	const filterTasks = (buttonName: FilterValuesType) => {
@@ -37,7 +35,7 @@ function App() {
 		<div className='App'>
 			<TodoList
 				titleValue='Who is know'
-				tasks={filteredTasks}
+				tasks={tasks}
 				removeTask={removeTask}
 				filterTasks={filterTasks}
 			/>

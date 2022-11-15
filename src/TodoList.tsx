@@ -51,9 +51,6 @@ export function TodoList(props: PropsType) {
 					click={props.filterTasks}
 					clickParameter={'completed'}
 				/>
-				{/*<button>All</button>
-				<button>Active</button>
-				<button>Completed</button>*/}
 			</div>
 		</div>
 	);
