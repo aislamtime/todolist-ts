@@ -2,16 +2,17 @@ import React from 'react';
 
 export type ButtonPropsType = {
 	name: string;
-	click: Function;
-	clickParameter?: number | string;
+	click: () => void;
 };
 
 export function Button(props: ButtonPropsType) {
+	const onClickHandler = () => {
+		props.click();
+	};
+
 	return (
 		<>
-			<button onClick={() => props.click(props.clickParameter)}>
-				{props.name}
-			</button>
+			<button onClick={onClickHandler}>{props.name}</button>
 		</>
 	);
 }

@@ -1,5 +1,14 @@
 import React from 'react';
 
-export function Input() {
-	return <input type='text' />;
+type InputPropsType = {
+	title: string;
+	inputChange: Function;
+};
+
+export function Input(props: InputPropsType) {
+	const onInputChangeHandler = () => {
+		props.inputChange();
+	};
+
+	return <input value={props.title} onChange={onInputChangeHandler} />;
 }
