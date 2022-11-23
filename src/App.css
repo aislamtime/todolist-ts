@@ -1,3 +1,6 @@
+* {
+	font-size: 16px;
+}
 #root {
 	padding: 50px;
 }
@@ -5,4 +8,35 @@
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+}
+
+input {
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 5px;
+	font-size: 16px;
+}
+button {
+	padding: 3px;
+	min-width: 35px;
+	margin: 0 0 0 5px;
+	border-radius: 5px;
+	border: none;
+	background-color: rgb(247, 99, 99);
+	cursor: pointer;
+}
+
+.error {
+	border: 1px solid red;
+}
+.errorMessage {
+	color: red;
+}
+
+.active {
+	background-color: aquamarine;
+}
+
+.completeTask {
+	opacity: 0.5;
 }

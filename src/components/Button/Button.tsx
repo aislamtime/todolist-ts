@@ -1,8 +1,10 @@
 import React from 'react';
+import './../../App.css';
 
 export type ButtonPropsType = {
 	name: string;
 	click: () => void;
+	className?: string;
 };
 
 export function Button(props: ButtonPropsType) {
@@ -12,7 +14,9 @@ export function Button(props: ButtonPropsType) {
 
 	return (
 		<>
-			<button onClick={onClickHandler}>{props.name}</button>
+			<button className={props.className} onClick={onClickHandler}>
+				{props.name}
+			</button>
 		</>
 	);
 }
