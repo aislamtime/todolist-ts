@@ -34,33 +34,27 @@ export function TodoList(props: TodoListPropsType) {
 	};
 
 	const addTask = (title: string) => {
-		let newTask = { id: v1(), name: title, isDone: false };
-		props.setTasks([newTask, ...props.tasks]);
-		setTitle('');
-	};
-
-	const inputChange = (event: ChangeEvent<HTMLInputElement>) => {
-		setTitle(event.currentTarget.value);
-	};
-
-	const onKeyPressHandler = (event: KeyboardEvent<HTMLInputElement>) => {
-		if (event.code === 'Enter') {
-			addTask(title);
+		if (title !== '') {
+			let newTask = { id: v1(), name: title, isDone: false };
+			props.setTasks([newTask, ...props.tasks]);
+			setTitle('');
+		} else {
+			alert('Введите имя задачи!');
 		}
+	};
+
+	const addTaskHandler = () => {
+		addTask(title);
 	};
 
 	return (
 		<div>
 			<TodoListTitle title={props.titleValue} />
 			<div>
-				<input
-					value={title}
-					onChange={inputChange}
-					onKeyPress={onKeyPressHandler}
-				/>
-				{/*<Input title={title} inputChange={inputChange} />*/}
-				<Button name='+' click={() => addTask(title)} />
+				<Input title={title} setTitle={setTitle} callBack={addTaskHandler} />
+				<Button name='+' click={addTaskHandler} />
 			</div>
+
 			<ul>
 				{props.tasks.map((task) => {
 					return (
@@ -73,18 +67,11 @@ export function TodoList(props: TodoListPropsType) {
 					);
 				})}
 			</ul>
+
 			<div>
 				<Button name={'All'} click={() => filterTasks('all')} />
-				<Button
-					name={'Active'}
-					click={() => filterTasks('active')}
-					//clickParameter={'active'}
-				/>
-				<Button
-					name={'Completed'}
-					click={() => filterTasks('completed')}
-					//clickParameter={'completed'}
-				/>
+				<Button name={'Active'} click={() => filterTasks('active')} />
+				<Button name={'Completed'} click={() => filterTasks('completed')} />
 			</div>
 		</div>
 	);

@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { ChangeEvent, KeyboardEvent } from 'react';
 
 type InputPropsType = {
 	title: string;
-	inputChange: Function;
+	setTitle: (title: string) => void;
+	callBack: () => void;
 };
 
 export function Input(props: InputPropsType) {
-	const onInputChangeHandler = () => {
-		props.inputChange();
+	const onInputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+		props.setTitle(e.currentTarget.value);
 	};
 
-	return <input value={props.title} onChange={onInputChangeHandler} />;
+	const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) =>
+		e.key === 'Enter' && props.callBack();
+
+	return (
+		<input
+			value={props.title}
+			onChange={onInputChangeHandler}
+			onKeyDown={onKeyDownHandler}
+		/>
+	);
 }
