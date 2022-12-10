@@ -17,6 +17,7 @@ type TodoListPropsType = {
     changeTaskTitle: (id: string, title: string, todoListId: string) => void;
     filter: FilterValuesType;
     removeTodoList: (id: string) => void
+    changeTodoListTitle: (title: string, id: string) => void
 };
 
 export function TodoList(props: TodoListPropsType) {
@@ -28,9 +29,12 @@ export function TodoList(props: TodoListPropsType) {
     const removeTodoList = () => {
         props.removeTodoList(props.todoListId)
     }
+    const changeTodoListTitleHandler = (title: string) => {
+        props.changeTodoListTitle(title, props.todoListId)
+    }
     return (
         <div>
-            <TodoListTitle title={props.title} />
+            <TodoListTitle title={props.title} changeTitle={changeTodoListTitleHandler} />
             <Button name={'X'} click={removeTodoList} />
 
             <AddItemForm addItem={addTask} />
@@ -88,8 +92,10 @@ export function TodoList(props: TodoListPropsType) {
 
 type TitlePropsType = {
     title: string;
+    changeTitle: (title: string) => void
 };
 function TodoListTitle(props: TitlePropsType) {
-    return <h3>{props.title}</h3>;
+    const onchangeHandler = (title: string) => props.changeTitle(title)
+    return <EditableSpan title={props.title} onChange={onchangeHandler} />;
 }
 

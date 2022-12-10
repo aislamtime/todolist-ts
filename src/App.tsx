@@ -66,6 +66,15 @@ function App() {
         }
     };
 
+    const changeTodoListTitle = (title: string, id: string) => {
+        todoLists.map((tl) => {
+            if (tl.id === id) {
+                tl.title = title
+            }
+        })
+        setTodoLists([...todoLists])
+    }
+
     const todoListId1 = v1();
     const todoListId2 = v1();
 
@@ -143,6 +152,7 @@ function App() {
                         changeTaskTitle={changeTitle}
                         filter={tl.filter}
                         removeTodoList={removeTodoList}
+                        changeTodoListTitle={changeTodoListTitle}
                     />
                 );
             })}
