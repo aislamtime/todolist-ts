@@ -1,6 +1,11 @@
 * {
 	font-size: 16px;
 }
+ul,
+li {
+	list-style: none;
+	padding: 0 5px;
+}
 #root {
 	padding: 50px;
 }
@@ -15,6 +20,17 @@ input {
 	border-radius: 5px;
 	padding: 5px;
 	font-size: 16px;
+	margin-bottom: 3px;
+}
+input.editableSpan {
+	max-width: 165px;
+	/*border: 1px solid black;*/
+}
+/*input.editableSpan:focus {
+	border: none;
+}*/
+span {
+	margin-bottom: 3px;
 }
 button {
 	padding: 3px;
