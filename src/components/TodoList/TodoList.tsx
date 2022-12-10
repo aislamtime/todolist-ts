@@ -1,10 +1,9 @@
-import React, { KeyboardEvent, ChangeEvent, useState } from 'react';
+import React, { ChangeEvent } from 'react';
 import { v1 } from 'uuid';
 import { FilterValuesType, TaskType } from '../../App';
 import { AddItemForm } from '../AddItemForm/AddItemForm';
 import { Button } from '../Button/Button';
 import { EditableSpan } from '../EditableSpan/EditableSpan';
-import { Input } from '../Input/Input';
 
 type TodoListPropsType = {
     todoListId: string;

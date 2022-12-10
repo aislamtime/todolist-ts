@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import ts from 'typescript';
 import { v1 } from 'uuid';
 import './App.css';
 import { AddItemForm } from './components/AddItemForm/AddItemForm';
-import { Button } from './components/Button/Button';
-import { Input } from './components/Input/Input';
 import { TodoList } from './components/TodoList/TodoList';
 
 export type FilterValuesType = 'all' | 'completed' | 'active';
