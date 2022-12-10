@@ -3,7 +3,6 @@ import { v1 } from 'uuid';
 import { FilterValuesType, TaskType } from '../../App';
 import { Button } from '../Button/Button';
 import { Input } from '../Input/Input';
-import './../../App.css';
 
 type TodoListPropsType = {
     id: string;
@@ -17,19 +16,6 @@ type TodoListPropsType = {
 };
 
 export function TodoList(props: TodoListPropsType) {
-    let [title, setTitle] = useState('');
-    let [error, setError] = useState<string>('');
-
-    const addTaskHandler = () => {
-        if (title.trim() !== '') {
-            props.addTask(title, props.id);
-            setTitle('');
-            setError('');
-        } else {
-            setError('Message is require!');
-        }
-    };
-
     return (
         <div>
             <TodoListTitle title={props.title} />
