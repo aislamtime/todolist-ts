@@ -1,8 +1,9 @@
+import { Delete } from '@mui/icons-material';
+import { Button, Checkbox, IconButton } from '@mui/material';
+import { pink } from '@mui/material/colors';
 import React, { ChangeEvent } from 'react';
-import { v1 } from 'uuid';
 import { FilterValuesType, TaskType } from '../../App';
 import { AddItemForm } from '../AddItemForm/AddItemForm';
-import { Button } from '../Button/Button';
 import { EditableSpan } from '../EditableSpan/EditableSpan';
 
 type TodoListPropsType = {
@@ -34,9 +35,14 @@ export function TodoList(props: TodoListPropsType) {
     return (
         <div>
             <TodoListTitle title={props.title} changeTitle={changeTodoListTitleHandler} />
-            <Button name={'X'} click={removeTodoList} />
+            <IconButton onClick={removeTodoList} >
+                <Delete />
+            </IconButton>
 
-            <AddItemForm addItem={addTask} />
+            <AddItemForm
+                inputPlaceholder={'Add task..'}
+                iconType={'task'}
+                addItem={addTask} />
 
             <ul>
                 {props.tasks.map((task) => {
@@ -55,14 +61,16 @@ export function TodoList(props: TodoListPropsType) {
 
                     return (
                         <li className={task.isDone ? 'completeTask' : ''} key={task.id}>
-                            <input
-                                type='checkbox'
+                            <Checkbox
                                 onChange={onChangeStatusHandler}
                                 checked={task.isDone}
+                                color="success"
                             />
                             <EditableSpan title={task.name} onChange={onChangeTitleHandler} />
                             {/*Кнопка которая удаляет таск*/}
-                            <Button name={'X'} click={onRemoveClickHandler} />
+                            <IconButton onClick={onRemoveClickHandler} >
+                                <Delete />
+                            </IconButton>
                         </li>
                     );
                 })}
@@ -70,20 +78,19 @@ export function TodoList(props: TodoListPropsType) {
 
             <div>
                 <Button
-                    className={props.filter === 'all' ? 'active' : ''}
-                    name={'All'}
-                    click={() => props.changeFilter('all', props.todoListId)}
-                />
+                    variant={props.filter === 'all' ? 'contained' : 'text'}
+                    onClick={() => props.changeFilter('all', props.todoListId)} >All
+                </Button>
                 <Button
-                    className={props.filter === 'active' ? 'active' : ''}
-                    name={'Active'}
-                    click={() => props.changeFilter('active', props.todoListId)}
-                />
+                    variant={props.filter === 'active' ? 'contained' : 'text'}
+                    color={'error'}
+                    onClick={() => props.changeFilter('active', props.todoListId)} >Active
+                </Button>
                 <Button
-                    className={props.filter === 'completed' ? 'active' : ''}
-                    name={'Completed'}
-                    click={() => props.changeFilter('completed', props.todoListId)}
-                />
+                    variant={props.filter === 'completed' ? 'contained' : 'text'}
+                    color={'success'}
+                    onClick={() => props.changeFilter('completed', props.todoListId)} >Completed
+                </Button>
             </div>
         </div>
     );

@@ -118,7 +118,10 @@ function App() {
         <div className='App'>
             <div>
                 <h3>Add new TodoList</h3>
-                <AddItemForm addItem={addTodoList} />
+                <AddItemForm
+                    inputPlaceholder={'Add list..'}
+                    iconType={'list'}
+                    addItem={addTodoList} />
             </div>
 
             {todoLists.map((tl) => {

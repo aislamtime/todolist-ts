@@ -18,7 +18,7 @@ h3 {
 	align-items: flex-start;
 }
 
-input {
+/*input {
 	border: 1px solid black;
 	border-radius: 5px;
 	padding: 5px;
@@ -27,15 +27,14 @@ input {
 }
 input.editableSpan {
 	max-width: 165px;
-	/*border: 1px solid black;*/
-}
+}*/
 /*input.editableSpan:focus {
 	border: none;
 }*/
 span {
 	margin-bottom: 3px;
 }
-button {
+/*button {
 	padding: 3px;
 	min-width: 35px;
 	margin: 0 0 0 5px;
@@ -43,7 +42,7 @@ button {
 	border: none;
 	background-color: rgb(247, 99, 99);
 	cursor: pointer;
-}
+}*/
 
 .error {
 	border: 1px solid red;
