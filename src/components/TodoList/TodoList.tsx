@@ -1,6 +1,5 @@
 import { Delete } from '@mui/icons-material';
 import { Button, Checkbox, IconButton } from '@mui/material';
-import { pink } from '@mui/material/colors';
 import React, { ChangeEvent } from 'react';
 import { FilterValuesType, TaskType } from '../../App';
 import { AddItemForm } from '../AddItemForm/AddItemForm';
@@ -44,7 +43,7 @@ export function TodoList(props: TodoListPropsType) {
                 iconType={'task'}
                 addItem={addTask} />
 
-            <ul>
+            <div>
                 {props.tasks.map((task) => {
 
                     const onChangeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +59,7 @@ export function TodoList(props: TodoListPropsType) {
                     };
 
                     return (
-                        <li className={task.isDone ? 'completeTask' : ''} key={task.id}>
+                        <div className={task.isDone ? 'completeTask' : ''} key={task.id}>
                             <Checkbox
                                 onChange={onChangeStatusHandler}
                                 checked={task.isDone}
@@ -71,10 +70,10 @@ export function TodoList(props: TodoListPropsType) {
                             <IconButton onClick={onRemoveClickHandler} >
                                 <Delete />
                             </IconButton>
-                        </li>
+                        </div>
                     );
                 })}
-            </ul>
+            </div>
 
             <div>
                 <Button
