@@ -9,7 +9,7 @@ import { TodoList } from './components/TodoList/TodoList'
 export type FilterValuesType = 'all' | 'completed' | 'active'
 export type TaskType = {
 	id: string
-	name: string
+	title: string
 	isDone: boolean
 }
 export type TodoListType = {
@@ -29,7 +29,7 @@ function App() {
 	}
 
 	const addTask = (title: string, todoListId: string) => {
-		let newTask = { id: v1(), name: title, isDone: false }
+		let newTask = { id: v1(), title: title, isDone: false }
 		let tasks = allTasks[todoListId]
 		let newTasks = [newTask, ...tasks]
 		allTasks[todoListId] = newTasks
@@ -48,7 +48,7 @@ function App() {
 		let tasks = allTasks[todoListId]
 		let task = tasks.find((t) => t.id === id)
 		if (task) {
-			task.name = title
+			task.title = title
 			setAllTasks({ ...allTasks })
 		}
 	}
@@ -80,15 +80,15 @@ function App() {
 
 	let [allTasks, setAllTasks] = useState<AllTasksType>({
 		[todoListId1]: [
-			{ id: v1(), name: 'CSS', isDone: true },
-			{ id: v1(), name: 'JS', isDone: true },
-			{ id: v1(), name: 'React', isDone: false },
-			{ id: v1(), name: 'Redux', isDone: false },
-			{ id: v1(), name: 'Node', isDone: false },
+			{ id: v1(), title: 'CSS', isDone: true },
+			{ id: v1(), title: 'JS', isDone: true },
+			{ id: v1(), title: 'React', isDone: false },
+			{ id: v1(), title: 'Redux', isDone: false },
+			{ id: v1(), title: 'Node', isDone: false },
 		],
 		[todoListId2]: [
-			{ id: v1(), name: 'Book', isDone: false },
-			{ id: v1(), name: 'Milk', isDone: true },
+			{ id: v1(), title: 'Book', isDone: false },
+			{ id: v1(), title: 'Milk', isDone: true },
 		],
 	})
 

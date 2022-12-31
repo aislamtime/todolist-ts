@@ -11,15 +11,21 @@ export const tasksReduser = (state: AllTasksType, action: TasksActionsType): All
 	switch (action.type) {
 		case 'REMOVE-TASK': {
 			let tasks = state[action.todolistId].filter((task) => task.id !== action.taskId)
-			state[action.todolistId] = tasks
-			return { ...state }
+			//state[action.todsolistId] = tasks
+			return {
+				...state,
+				[action.todolistId]: tasks,
+			}
 		}
 		case 'ADD-TASK': {
-			let newTask = { id: v1(), name: action.title, isDone: false }
+			let newTask = { id: v1(), title: action.title, isDone: false }
 			let tasks = state[action.todolistId]
 			let newTasks = [newTask, ...tasks]
-			state[action.todolistId] = newTasks
-			return { ...state }
+			//state[action.todolistId] = newTasks
+			return {
+				...state,
+				[action.todolistId]: newTasks,
+			}
 		}
 		case 'CHANGE-TASK-STATUS': {
 			let tasks = state[action.todolistId]
@@ -33,7 +39,7 @@ export const tasksReduser = (state: AllTasksType, action: TasksActionsType): All
 			let tasks = state[action.todolistId]
 			let task = tasks.find((t) => t.id === action.taskId)
 			if (task) {
-				task.name = action.newTitle
+				task.title = action.newTitle
 				return { ...state }
 			} else return state
 		}
