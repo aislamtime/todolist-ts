@@ -1,11 +1,14 @@
 import { v1 } from 'uuid'
 import { AllTasksType } from '../../App'
+import { addTodolistAC, removeTodolistAC } from './todolist-reduser'
 
 type TasksActionsType =
 	| ReturnType<typeof removeTaskAC>
 	| ReturnType<typeof addTaskAC>
 	| ReturnType<typeof changeTaskStatusAC>
 	| ReturnType<typeof changeTaskTitleAC>
+	| ReturnType<typeof addTodolistAC>
+	| ReturnType<typeof removeTodolistAC>
 
 export const tasksReduser = (state: AllTasksType, action: TasksActionsType): AllTasksType => {
 	switch (action.type) {
@@ -42,6 +45,17 @@ export const tasksReduser = (state: AllTasksType, action: TasksActionsType): All
 				task.title = action.newTitle
 				return { ...state }
 			} else return state
+		}
+		case 'ADD-TODOLIST': {
+			return {
+				...state,
+				[action.newTodolistId]: [],
+			}
+		}
+		case 'REMOVE-TODOLIST': {
+			const stateCopy = { ...state }
+			delete stateCopy[action.id]
+			return stateCopy
 		}
 		default:
 			throw new Error('BAD ACTION TYPE')
