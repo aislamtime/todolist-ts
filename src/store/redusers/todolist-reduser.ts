@@ -1,6 +1,7 @@
 import React from 'react'
 import { v1 } from 'uuid'
-import { FilterValuesType, TodoListType } from '../../App'
+//import { FilterValuesType, TodoListType } from '../../App'
+import { todoListId1, todoListId2 } from './tasks-reduser'
 
 type TodoListActionsType =
 	| ReturnType<typeof removeTodolistAC>
@@ -8,7 +9,23 @@ type TodoListActionsType =
 	| ReturnType<typeof changeTodolistTitleAC>
 	| ReturnType<typeof changeTodolistFilterAC>
 
-export const todolistReduser = (state: Array<TodoListType>, action: TodoListActionsType): Array<TodoListType> => {
+export type FilterValuesType = 'all' | 'completed' | 'active'
+
+export type TodoListType = {
+	id: string
+	title: string
+	filter: FilterValuesType
+}
+
+const initialState: Array<TodoListType> = [
+	{ id: todoListId1, title: 'What to learn', filter: 'all' },
+	{ id: todoListId2, title: 'What to buy', filter: 'all' },
+]
+
+export const todolistReduser = (
+	state: Array<TodoListType> = initialState,
+	action: TodoListActionsType,
+): Array<TodoListType> => {
 	switch (action.type) {
 		case 'REMOVE-TODOLIST': {
 			return [...state.filter((tl) => tl.id !== action.id)]
@@ -34,7 +51,7 @@ export const todolistReduser = (state: Array<TodoListType>, action: TodoListActi
 			return [...state]
 		}
 		default:
-			throw new Error('BAD ACTION TYPE')
+			return state
 	}
 }
 

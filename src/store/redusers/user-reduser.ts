@@ -26,6 +26,6 @@ export const userReduser = (state: UserType, action: UserActionType): UserType =
 				name: action.name,
 			}
 		default:
-			throw new Error('Bad action type')
+			return state
 	}
 }

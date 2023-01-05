@@ -1,4 +1,3 @@
-import { v1 } from 'uuid'
 import { AllTasksType, TodoListType } from '../../App'
 import { tasksReduser } from './tasks-reduser'
 import { addTodolistAC, todolistReduser } from './todolist-reduser'
