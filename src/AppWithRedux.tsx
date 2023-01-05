@@ -1,8 +1,7 @@
 import { Menu } from '@mui/icons-material'
 import { AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography } from '@mui/material'
-import React, { useReducer, useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { v1 } from 'uuid'
 import './App.css'
 import { AddItemForm } from './components/AddItemForm/AddItemForm'
 import { TodoList } from './components/TodoList/TodoList'
@@ -12,7 +11,6 @@ import {
 	changeTaskStatusAC,
 	changeTaskTitleAC,
 	removeTaskAC,
-	tasksReduser,
 	TaskType,
 } from './store/redusers/tasks-reduser'
 import {
@@ -21,50 +19,14 @@ import {
 	changeTodolistTitleAC,
 	FilterValuesType,
 	removeTodolistAC,
-	todolistReduser,
 	TodoListType,
 } from './store/redusers/todolist-reduser'
 import { RootStateType } from './store/store'
-
-//export type FilterValuesType = 'all' | 'completed' | 'active'
-//export type TaskType = {
-//	id: string
-//	title: string
-//	isDone: boolean
-//}
-//export type TodoListType = {
-//	id: string
-//	title: string
-//	filter: FilterValuesType
-//}
-//export type AllTasksType = {
-//	[key: string]: Array<TaskType>
-//}
 
 function AppWithRedux() {
 	const dispatch = useDispatch()
 	const todolists = useSelector<RootStateType, TodoListType[]>((state: RootStateType) => state.todolists)
 	const tasks = useSelector<RootStateType, AllTasksType>((state: RootStateType) => state.tasks)
-
-	//const todoListId1 = v1()
-	//const todoListId2 = v1()
-	//const [todoLists, dispatchToTodolistReducer] = useReducer(todolistReduser, [
-	//	{ id: todoListId1, title: 'What to learn', filter: 'all' },
-	//	{ id: todoListId2, title: 'What to buy', filter: 'all' },
-	//])
-	//const [allTasks, dispatchToTasksReducer] = useReducer(tasksReduser, {
-	//	[todoListId1]: [
-	//		{ id: v1(), title: 'CSS', isDone: true },
-	//		{ id: v1(), title: 'JS', isDone: true },
-	//		{ id: v1(), title: 'React', isDone: false },
-	//		{ id: v1(), title: 'Redux', isDone: false },
-	//		{ id: v1(), title: 'Node', isDone: false },
-	//	],
-	//	[todoListId2]: [
-	//		{ id: v1(), title: 'Book', isDone: false },
-	//		{ id: v1(), title: 'Milk', isDone: true },
-	//	],
-	//})
 
 	const removeTask = (taskId: string, todoListId: string) => dispatch(removeTaskAC(todoListId, taskId))
 

@@ -1,6 +1,5 @@
 import React from 'react'
 import { v1 } from 'uuid'
-//import { FilterValuesType, TodoListType } from '../../App'
 import { todoListId1, todoListId2 } from './tasks-reduser'
 
 type TodoListActionsType =

@@ -1,5 +1,4 @@
 import { v1 } from 'uuid'
-//import { AllTasksType } from '../../App'
 import { addTodolistAC, removeTodolistAC } from './todolist-reduser'
 
 type TasksActionsType =
